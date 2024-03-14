@@ -1,0 +1,37 @@
+<div class="card-container">
+  <div class="header-container">
+    <div class="example-header-image"></div>
+    <div class="header-content">
+      <h3>{{ post.name }}</h3>
+      <p
+        class="info-header"
+        >Postado por: {{ post.postedBy }} | Postado em
+        {{ post.date | date : "YYYY-MM-dd" }}</p
+      >
+    </div>
+  </div>
+
+  <div class="card-content">
+    <img [src]="post.img" class="post-img" alt="Card Image">
+    <p>{{  post.content.length > 600 ? post.content.substr(0, 600) + '...' : post.content }}</p>
+  </div>
+
+  <!-- <mat-grid-list cols="5">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <img mat-card-image [src]="post.img" class="post-img" alt="Card Image">
+    </mat-grid-tile>
+
+    <mat-grid-tile style="padding-left: 10px;" [colspan]="3" [rowspan]="1">
+      {{  post.content.length > 600 ? post.content.substr(0, 600) + '...' : post.content }}
+    </mat-grid-tile>
+  </mat-grid-list> -->
+
+  <hr>
+
+  <div>
+    <button mat-raised-button color="primary">{{post.likeCount}} <mat-icon>favorite</mat-icon> </button>
+    <button mat-raised-button color="primary" style="margin-left: 10px;">{{post.viewCount}} <mat-icon>remove_red_eye</mat-icon> </button>
+    <button mat-raised-button color="primary" style="margin-left: 10px;">Visualizar post</button>
+  </div>
+</div>
+

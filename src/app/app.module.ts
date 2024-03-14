@@ -10,11 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { RouterModule } from '@angular/router';
+import { PostComponent } from './shared/components/post/post.component';
+import { ViewAllComponent } from './pages/view-all/view-all.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    PostComponent,
+    ViewAllComponent
   ],
   imports: [
     CommonModule,

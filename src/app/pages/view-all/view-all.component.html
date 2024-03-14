@@ -1,0 +1,7 @@
+@for (post of allPosts; track $index) {
+
+  @if(post.name) {
+    <post [post]="post" />
+  }
+
+}

@@ -6,19 +6,17 @@ import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Post } from '../../models/post.model';
 import { PostService } from '../../service/post.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.scss',
 })
-export class CreatePostComponent implements OnInit, OnDestroy {
+export class CreatePostComponent implements OnInit {
 
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   public formGroup!: FormGroup;
   public tags: string[] = [];
-  public postSubscription!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +27,6 @@ export class CreatePostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.buildForm();
-  }
-
-  ngOnDestroy(): void {
-    this.postSubscription.unsubscribe();
   }
 
   addTag(event: MatChipInputEvent): void {
@@ -74,7 +68,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     const request = this.montarRequestCadastro();
-    this.postSubscription = this.service.createNewpost(request).subscribe({
+    this.service.createNewpost(request).subscribe({
       next: () => {
         this.snackBar.open('Post criado com sucesso', 'Fechar', {
           duration: 2000,
