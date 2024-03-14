@@ -8,10 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { CreatePostComponent } from './pages/create-post/create-post.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreatePostComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { CommonModule } from '@angular/common';
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [
     provideAnimationsAsync()

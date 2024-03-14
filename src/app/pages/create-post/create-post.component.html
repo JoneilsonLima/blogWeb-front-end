@@ -1,0 +1,57 @@
+<mat-card class="center-card">
+  <mat-card-content>
+    <form [formGroup]="formGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Foto</mat-label>
+        <input matInput formControlName="img" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Conteúdo</mat-label>
+        <textarea row="5" matInput formControlName="content"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Postado por</mat-label>
+        <input matInput formControlName="postedBy" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tags</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Pressione enter para adicionar tag">
+          @for (tag of tags; track $index) {
+            <mat-chip-row
+              (removed)="remove(tag)"
+              [editable]="true"
+              (edited)="edit(tag, $event)"
+              [aria-description]="'pressione enter para editar ' + tag">
+              {{tag}}
+              <button matChipRemove [attr.aria-label]="'remover ' + tag">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          }
+          <input placeholder="Nova Tag..."
+                 [matChipInputFor]="chipGrid"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="add($event)"/>
+        </mat-chip-grid>
+      </mat-form-field>
+
+      <button
+        [disabled]="!formGroup.valid"
+        mat-raised-button
+        color="primary"
+        style="float: right"
+      >
+        Criar nova postagem
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
