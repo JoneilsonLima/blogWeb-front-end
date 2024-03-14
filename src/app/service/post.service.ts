@@ -20,4 +20,9 @@ export class PostService {
     const url = `${environment.apiUrl}/posts`
     return this.http.get<Post[]>(url)
   }
+
+  getPostById(postId: number): Observable<Post> {
+    const url = `${environment.apiUrl}/posts/${postId}`
+    return this.http.get<Post>(url)
+  }
 }
