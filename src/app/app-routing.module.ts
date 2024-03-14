@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { ViewAllComponent } from './pages/view-all/view-all.component';
+import { ViewPostComponent } from './pages/view-post/view-post.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'view-all',
     component: ViewAllComponent
+  },
+  {
+    path: 'view-post/:id',
+    component: ViewPostComponent
   }
 ];
 

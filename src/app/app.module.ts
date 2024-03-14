@@ -12,13 +12,15 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { RouterModule } from '@angular/router';
 import { PostComponent } from './shared/components/post/post.component';
 import { ViewAllComponent } from './pages/view-all/view-all.component';
+import { ViewPostComponent } from './pages/view-post/view-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreatePostComponent,
     PostComponent,
-    ViewAllComponent
+    ViewAllComponent,
+    ViewPostComponent
   ],
   imports: [
     CommonModule,

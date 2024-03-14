@@ -1,5 +1,6 @@
 export interface Post {
   name: string;
+  id?: number,
   content: string;
   img: string;
   postedBy: string;
