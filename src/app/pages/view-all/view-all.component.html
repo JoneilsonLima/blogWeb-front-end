@@ -7,7 +7,7 @@
   @for (post of allPosts; track $index) {
 
     @if(post.name) {
-      <post [post]="post" (postId)="redirectedPost($event)" />
+      <post [post]="post" (postId)="redirectedPost($event)" (liked)="onClickLikePost()"/>
     }
 
   }

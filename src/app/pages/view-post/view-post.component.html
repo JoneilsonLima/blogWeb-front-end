@@ -3,5 +3,5 @@
 </div>
 
 @if(post && !loading) {
-  <post [post]="post" [viewPost]="true" />
+  <post [post]="post" [viewPost]="true" (liked)="onClickLikePost()"/>
 }

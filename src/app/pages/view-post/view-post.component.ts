@@ -34,9 +34,9 @@ export class ViewPostComponent implements OnInit, OnDestroy {
     this.postSubscription.unsubscribe();
   }
 
-  getPostById(): void {
-    this.loading = true;
-    this.postSubscription = this.service.getPostById(this.postId).subscribe({
+  getPostById(isLoading = true, likedPost?: boolean): void {
+    this.loading = isLoading;
+    this.postSubscription = this.service.getPostById(this.postId, likedPost).subscribe({
       next: (post: Post) => {
         this.post = post;
       },
@@ -49,5 +49,9 @@ export class ViewPostComponent implements OnInit, OnDestroy {
         }, 300)
       }
     });
+  }
+
+  onClickLikePost(): void {
+    this.getPostById(false, true);
   }
 }

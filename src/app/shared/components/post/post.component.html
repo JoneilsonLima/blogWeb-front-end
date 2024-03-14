@@ -3,38 +3,53 @@
     <div class="example-header-image"></div>
     <div class="header-content">
       <h3>{{ post.name }}</h3>
-      <p
-        class="info-header"
-        >Postado por: {{ post.postedBy }} | Postado em
-        {{ post.date | date : "YYYY-MM-dd" }}</p
-      >
+      <p class="info-header">
+        Postado por: {{ post.postedBy }} | Postado em
+        {{ post.date | date : "dd/mm/yyyy HH:mm:ss" }}
+      </p>
     </div>
   </div>
 
   <div class="card-content">
-    <img [src]="post.img" class="post-img" alt="Card Image">
-    <p>{{  post.content.length > 600 && ! viewPost ? post.content.substr(0, 600) + '...' : post.content }}</p>
+    <img [src]="post.img" class="post-img" alt="Card Image" />
+    <p>
+      {{
+        post.content.length > 600 && !viewPost
+          ? post.content.substr(0, 600) + "..."
+          : post.content
+      }}
+    </p>
   </div>
 
-  <hr>
+  <hr />
 
   @if(viewPost) {
-    <mat-chip-set>
-      @for(tag of post.tags; track tag) {
-        <mat-chip>
-          {{ tag }}
-        </mat-chip>
-      }
-    </mat-chip-set>
+  <mat-chip-set>
+    @for(tag of post.tags; track tag) {
+    <mat-chip>
+      {{ tag }}
+    </mat-chip>
+    }
+  </mat-chip-set>
   }
 
   <div>
-    <button mat-raised-button color="primary">{{post.likeCount}} <mat-icon>favorite</mat-icon> </button>
-    <button mat-raised-button color="primary" style="margin-left: 10px;">{{post.viewCount}} <mat-icon>remove_red_eye</mat-icon> </button>
+    <button (click)="onClickLikePost()" mat-raised-button color="primary">
+      {{ post.likeCount }} <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" style="margin-left: 10px">
+      {{ post.viewCount }} <mat-icon>remove_red_eye</mat-icon>
+    </button>
 
     @if(!viewPost) {
-      <button mat-raised-button color="primary" style="margin-left: 10px;" (click)="onCLickViewPost()">Visualizar post</button>
+    <button
+      mat-raised-button
+      color="primary"
+      style="margin-left: 10px"
+      (click)="onCLickViewPost()"
+    >
+      Visualizar post
+    </button>
     }
   </div>
 </div>
-

@@ -33,8 +33,8 @@ export class ViewAllComponent implements OnInit, OnDestroy {
     this.router.navigate(['/view-post', postId]);
   }
 
-  getAllPosts(): void {
-    this.loading = true;
+  getAllPosts(isLoading = true): void {
+    this.loading = isLoading;
     this.allPostSubscription = this.postService.getAllPosts().subscribe({
       next: (posts: Post[]) => {
         this.allPosts = posts;
@@ -48,5 +48,9 @@ export class ViewAllComponent implements OnInit, OnDestroy {
         }, 300)
       }
     });
+  }
+
+  onClickLikePost(): void {
+    this.getAllPosts(false);
   }
 }

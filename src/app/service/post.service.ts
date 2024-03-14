@@ -12,17 +12,22 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   createNewpost(request: Post): Observable<Post> {
-    const url = `${environment.apiUrl}/posts`
-    return this.http.post<Post>(url, { request })
+    const url = `${environment.apiUrl}/posts`;
+    return this.http.post<Post>(url, { request });
   }
 
   getAllPosts(): Observable<Post[]> {
-    const url = `${environment.apiUrl}/posts`
-    return this.http.get<Post[]>(url)
+    const url = `${environment.apiUrl}/posts`;
+    return this.http.get<Post[]>(url);
   }
 
-  getPostById(postId: number): Observable<Post> {
-    const url = `${environment.apiUrl}/posts/${postId}`
-    return this.http.get<Post>(url)
+  getPostById(postId: number, likedPost: boolean = false): Observable<Post> {
+    const url = `${environment.apiUrl}/posts/${postId}/${likedPost}`;
+    return this.http.get<Post>(url);
+  }
+
+  likePost(postId: number): Observable<string[]> {
+    const url = `${environment.apiUrl}/posts/${postId}/like`;
+    return this.http.put<string[]>(url, {});
   }
 }
