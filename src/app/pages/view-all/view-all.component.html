@@ -1,7 +1,15 @@
-@for (post of allPosts; track $index) {
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
 
-  @if(post.name) {
-    <post [post]="post" (postId)="redirectedPost($event)" />
+@if(!loading) {
+
+  @for (post of allPosts; track $index) {
+
+    @if(post.name) {
+      <post [post]="post" (postId)="redirectedPost($event)" />
+    }
+
   }
 
 }

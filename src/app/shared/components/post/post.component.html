@@ -18,10 +18,23 @@
 
   <hr>
 
+  @if(viewPost) {
+    <mat-chip-set>
+      @for(tag of post.tags; track tag) {
+        <mat-chip>
+          {{ tag }}
+        </mat-chip>
+      }
+    </mat-chip-set>
+  }
+
   <div>
     <button mat-raised-button color="primary">{{post.likeCount}} <mat-icon>favorite</mat-icon> </button>
     <button mat-raised-button color="primary" style="margin-left: 10px;">{{post.viewCount}} <mat-icon>remove_red_eye</mat-icon> </button>
-    <button mat-raised-button color="primary" style="margin-left: 10px;" (click)="onCLickViewPost()">Visualizar post</button>
+
+    @if(!viewPost) {
+      <button mat-raised-button color="primary" style="margin-left: 10px;" (click)="onCLickViewPost()">Visualizar post</button>
+    }
   </div>
 </div>
 

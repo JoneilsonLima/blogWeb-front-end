@@ -13,6 +13,8 @@ import { Post } from '../../models/post.model';
 export class ViewPostComponent implements OnInit, OnDestroy {
   public postId!: number;
   public postSubscription!: Subscription;
+  public post!: Post;
+  public loading: boolean = false;
 
   constructor(
     private service: PostService,
@@ -33,13 +35,19 @@ export class ViewPostComponent implements OnInit, OnDestroy {
   }
 
   getPostById(): void {
+    this.loading = true;
     this.postSubscription = this.service.getPostById(this.postId).subscribe({
       next: (post: Post) => {
-        console.log(post);
+        this.post = post;
       },
       error: (err) => {
         this.snackBar.open('Algo deu errado!!!', 'Ok');
       },
+      complete: () => {
+        setTimeout(() => {
+          this.loading = false;
+        }, 300)
+      }
     });
   }
 }

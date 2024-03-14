@@ -8,6 +8,7 @@ import { Post } from '../../../models/post.model';
 })
 export class PostComponent {
   @Input() public post!: Post;
+  @Input() public viewPost: boolean = false;
   @Output() public postId: EventEmitter<number> = new EventEmitter();
 
   onCLickViewPost(): void {

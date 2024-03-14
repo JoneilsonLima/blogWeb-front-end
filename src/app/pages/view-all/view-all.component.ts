@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class ViewAllComponent implements OnInit, OnDestroy {
   public allPosts: Post[] = [];
   public allPostSubscription!: Subscription;
+  public loading: boolean = false;
 
   constructor(
     private postService: PostService,
@@ -33,6 +34,7 @@ export class ViewAllComponent implements OnInit, OnDestroy {
   }
 
   getAllPosts(): void {
+    this.loading = true;
     this.allPostSubscription = this.postService.getAllPosts().subscribe({
       next: (posts: Post[]) => {
         this.allPosts = posts;
@@ -40,6 +42,11 @@ export class ViewAllComponent implements OnInit, OnDestroy {
       error: (err) => {
         this.snackBar.open('Algo deu errado!!!', 'Ok');
       },
+      complete: () => {
+        setTimeout(() => {
+          this.loading = false;
+        }, 300)
+      }
     });
   }
 }
