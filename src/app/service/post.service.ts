@@ -15,4 +15,9 @@ export class PostService {
     const url = `${environment.apiUrl}/posts`
     return this.http.post<Post>(url, { request })
   }
+
+  getAllPosts(): Observable<Post[]> {
+    const url = `${environment.apiUrl}/posts`
+    return this.http.get<Post[]>(url)
+  }
 }
