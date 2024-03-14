@@ -13,7 +13,7 @@
 
   <div class="card-content">
     <img [src]="post.img" class="post-img" alt="Card Image">
-    <p>{{  post.content.length > 600 ? post.content.substr(0, 600) + '...' : post.content }}</p>
+    <p>{{  post.content.length > 600 && ! viewPost ? post.content.substr(0, 600) + '...' : post.content }}</p>
   </div>
 
   <hr>
