@@ -30,4 +30,9 @@ export class PostService {
     const url = `${environment.apiUrl}/posts/${postId}/like`;
     return this.http.put<string[]>(url, {});
   }
+
+  searchPostByName(name: string): Observable<Post[]> {
+    const url = `${environment.apiUrl}/posts/search/${name}`;
+    return this.http.get<Post[]>(url);
+  }
 }
