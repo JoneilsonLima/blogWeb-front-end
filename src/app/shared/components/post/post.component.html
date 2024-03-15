@@ -1,37 +1,27 @@
 <div class="card-container">
-  <div class="header-container">
-    <div class="example-header-image"></div>
-    <div class="header-content">
-      <h3>{{ post.name }}</h3>
-      <p class="info-header">
-        Postado por: {{ post.postedBy }} | Postado em
-        {{ post.date | date : "dd/mm/yyyy HH:mm:ss" }}
-      </p>
-    </div>
-  </div>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ post.name }}</mat-card-title>
+      <mat-card-subtitle
+        >Postado por: {{ post.postedBy }} | Postado em
+        {{ post.date | date : "dd/mm/yyyy HH:mm:ss" }}</mat-card-subtitle
+      >
+    </mat-card-header>
 
-  <div class="card-content">
-    <img [src]="post.img" class="post-img" alt="Card Image" />
-    <p>
-      {{
-        post.content.length > 600 && !viewPost
-          ? post.content.substr(0, 600) + "..."
-          : post.content
-      }}
-    </p>
-  </div>
-
-  <hr />
-
-  @if(viewPost) {
-  <mat-chip-set>
-    @for(tag of post.tags; track tag) {
-    <mat-chip>
-      {{ tag }}
-    </mat-chip>
-    }
-  </mat-chip-set>
-  }
+    <mat-card-content>
+      <div class="card-content">
+        <img [src]="post.img" class="post-img" alt="Card Image" />
+        <p>
+          {{
+            post.content.length > 600 && !viewPost
+              ? post.content.substr(0, 600) + "..."
+              : post.content
+          }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
   <div>
     <button (click)="onClickLikePost()" mat-raised-button color="primary">
@@ -54,10 +44,10 @@
   </div>
 
   @if(viewPost) {
-  <div  class="comment-card">
+  <div class="comment-card">
     <h4>Faça um comentário:</h4>
 
-    <mat-card style="padding: 20px;">
+    <mat-card style="padding: 20px">
       <form [formGroup]="formGroup">
         <mat-form-field appearance="fill">
           <mat-label>Conteúdo</mat-label>
@@ -81,6 +71,25 @@
       </form>
     </mat-card>
 
+    <div style="margin-top: 10px">
+      <h4>Comentários:</h4>
+
+      @for (comment of comments; track $index) {
+      <mat-card style="margin-top: 10px">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ comment.postedBy }}</mat-card-title>
+          <mat-card-subtitle>{{
+            comment.createdAt | date : "dd/mm/yyyy HH:mm:ss"
+          }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          {{ comment.content }}
+        </mat-card-content>
+      </mat-card>
+      }
+    </div>
   </div>
   }
 </div>

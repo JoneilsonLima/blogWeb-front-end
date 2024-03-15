@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentRequest } from '../../../models/comment-request.model';
 import { CommentService } from '../../../service/comment.service';
+import { CommentResponse } from '../../../models/comment-response.model';
 
 @Component({
   selector: 'post',
@@ -18,6 +19,7 @@ export class PostComponent implements OnInit {
   @Output() public liked: EventEmitter<void> = new EventEmitter();
 
   public formGroup!: FormGroup;
+  public comments: CommentResponse[] = [];
 
   constructor(
     private service: PostService,
@@ -28,6 +30,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this._buildForm();
+    this.getComments();
   }
 
   onCLickViewPost(): void {
@@ -74,6 +77,22 @@ export class PostComponent implements OnInit {
         this.snackBar.open('Comentário publicado com sucesso', 'Ok', {
           duration: 2000,
         });
+      },
+      error: (err) => {
+        this.snackBar.open('Algo deu errado!!!', 'Ok');
+      },
+      complete: () => {
+        this.getComments();
+      }
+    });
+  }
+
+  getComments(): void{
+    if (!this.post.id) return;
+
+    this.commentService.getCommentById(this.post.id).subscribe({
+      next: (resp: CommentResponse[]) => {
+        this.comments = resp;
       },
       error: (err) => {
         this.snackBar.open('Algo deu errado!!!', 'Ok');
