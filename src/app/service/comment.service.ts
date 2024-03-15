@@ -12,11 +12,11 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   createComment(commentRequest: CommentRequest): Observable<void> {
-    const url = `${environment.apiUrl}/comments/create`;
+    let url = `${environment.apiUrl}/comments/create`;
 
-    const params = new HttpParams();
-    params.set('postId', commentRequest.postId);
-    params.set('postedBy', commentRequest.postedBy);
+    let params = new HttpParams();
+    params = params.append('postId', commentRequest.postId);
+    params = params.append('postedBy', commentRequest.postedBy);
 
     return this.http.post<void>(url, commentRequest.content, { params });
   }

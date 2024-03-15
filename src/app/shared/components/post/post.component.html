@@ -52,4 +52,35 @@
     </button>
     }
   </div>
+
+  @if(viewPost) {
+  <div  class="comment-card">
+    <h4>Faça um comentário:</h4>
+
+    <mat-card style="padding: 20px;">
+      <form [formGroup]="formGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>Conteúdo</mat-label>
+          <textarea rows="5" matInput formControlName="content"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Postado por</mat-label>
+          <input matInput type="text" formControlName="postedBy" />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right"
+          [disabled]="!formGroup.valid"
+          (click)="publishComment()"
+        >
+          Publicar comentário
+        </button>
+      </form>
+    </mat-card>
+
+  </div>
+  }
 </div>

@@ -52,3 +52,13 @@
 mat-card-footer {
   margin-left: 20px;
 }
+
+mat-form-field {
+  width: 100%;
+}
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
