@@ -1,0 +1,19 @@
+.search-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.search-form form{
+  width: 500px;
+}
+
+.search-form form mat-form-field {
+  width: 100%;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 100px;
+}

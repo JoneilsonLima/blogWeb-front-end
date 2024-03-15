@@ -2,14 +2,34 @@
   <mat-spinner></mat-spinner>
 </div>
 
-@if(!loading) {
+<div class="search-form">
+  <form [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>Pesquisar</mat-label>
+      <input formControlName="nameSearch" matInput type="text" />
+      <mat-icon
+        (click)="onClickSearchByName()"
+        style="cursor: pointer"
+        matSuffix
+        >search</mat-icon
+      >
+    </mat-form-field>
+  </form>
+</div>
 
-  @for (post of allPosts; track $index) {
-
-    @if(post.name) {
-      <post [post]="post" (postId)="redirectedPost($event)" (liked)="onClickLikePost()"/>
-    }
-
-  }
-
+@if (postNotFound) {
+  <div class="empty">
+    <mat-icon>no_sim</mat-icon>
+    <br>
+    <span>Nenhum post encontrado.</span>
+  </div>
 }
+
+
+@if(!loading) { @for (post of allPosts; track $index) { @if(post.name) {
+<post
+  [post]="post"
+  (postId)="redirectedPost($event)"
+  (liked)="onClickLikePost()"
+/>
+} } }
